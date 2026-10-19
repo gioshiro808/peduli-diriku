@@ -1,0 +1,27 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#F4F7F2" android:fillViewport="true">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="PEDULI DIRIKU  /  CATATAN ASUPAN" android:textSize="11sp" android:letterSpacing="0.12" android:textColor="#387452" android:textStyle="bold" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="Langkah kecil,\nlebih peduli diri." android:textSize="32sp" android:textStyle="bold" android:textColor="#183D2C" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="Kenali apa yang masuk ke tubuhmu hari ini." android:textColor="#5C6C60" />
+        <Button android:id="@+id/date" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Pilih tanggal" />
+        <TextView android:id="@+id/timeStatus" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="11sp" android:textColor="#5C6C60" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="20dp" android:background="@drawable/panel">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ENERGI TERCATAT" android:textColor="#387452" android:textSize="12sp" android:textStyle="bold" />
+            <TextView android:id="@+id/calories" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="0 kkal" android:textSize="38sp" android:textColor="#183D2C" android:textStyle="bold" />
+            <TextView android:id="@+id/nutrients" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textColor="#183D2C" android:lineSpacingExtra="6dp" />
+            <ProgressBar android:id="@+id/sugarProgress" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="8dp" android:layout_marginTop="16dp" android:max="100" android:progressTint="#387452" />
+            <TextView android:id="@+id/warning" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:textSize="12sp" />
+        </LinearLayout>
+        <Button android:id="@+id/add" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="20dp" android:text="+  Catat makanan / minuman" />
+        <Button android:id="@+id/custom" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Tambah ke katalog pribadi" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:text="Catatan asupan" android:textSize="22sp" android:textStyle="bold" android:textColor="#183D2C" />
+        <TextView android:id="@+id/empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="16dp" android:paddingBottom="16dp" android:text="Belum ada asupan tercatat.\nMulai dengan makanan atau minuman pertamamu." android:textColor="#5C6C60" />
+        <LinearLayout android:id="@+id/entries" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+        <TextView android:id="@+id/error" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="#A53624" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="24dp" android:background="@drawable/panel" android:text="BESOK PAGI, MULAI DENGAN BAIK\n\nIde sarapan: nasi, telur atau tempe, dan sayur. Lengkapi dengan air putih; sesuaikan porsi dengan kebutuhanmu.\n\nPengingat sarapan 07.00 • Ringkasan 23.30\nPengingat pencatatan setiap 1 jam. Jadwal dapat terlambat karena penghematan baterai Android." android:textColor="#385844" android:lineSpacingExtra="4dp" />
+        <Button android:id="@+id/notifications" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Atur izin notifikasi" />
+        <Button android:id="@+id/zone" style="@style/Widget.MaterialComponents.Button.TextButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Zona waktu Indonesia" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:text="Katalog awal berisi estimasi per porsi, bukan data gizi terverifikasi. Gunakan label kemasan untuk makanan khusus. Peringatan menggunakan gula total yang tercatat dengan ambang pengingat 50 g; panduan WHO 50 g berlaku untuk gula bebas pada pola makan 2.000 kkal. Kebutuhan tiap orang berbeda." android:textSize="11sp" android:textColor="#66756A" />
+    </LinearLayout>
+</ScrollView>
