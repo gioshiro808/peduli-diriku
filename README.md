@@ -4,7 +4,7 @@ Aplikasi Android Kotlin + layout XML untuk pencatatan asupan harian. Buka proyek
 
 ## Fitur versi awal
 
-- Katalog awal 10 makanan/minuman yang umum di Indonesia, pencarian, porsi pecahan, serta katalog pribadi dari label kemasan.
+- Katalog awal 21 makanan/minuman/paket yang umum di Indonesia, pencarian, porsi pecahan, serta katalog pribadi dari label kemasan melalui bottom sheet. Rincian estimasi, resep kopi, dan komponen nasi rumahan: [katalog gizi](docs/nutrition-catalog.md).
 - Penyimpanan SQLite lokal yang bertahan setelah aplikasi ditutup; pencatatan energi, gula total, natrium, dan protein.
 - Ringkasan per tanggal dan hapus catatan dengan konfirmasi. Catatan baru dimasukkan ke hari ini; riwayat tetap tersedia setelah pergantian hari.
 - Ambang pengingat gula total 50 g. Ini bukan batas medis personal: acuan WHO di bawah membahas **gula bebas**, yang berbeda dari gula total.

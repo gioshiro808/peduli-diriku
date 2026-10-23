@@ -21,7 +21,7 @@ data class Nutrients(
         Nutrients(calories * portions, sugar * portions, sodium * portions, protein * portions)
 }
 
-data class Food(val id: String, val name: String, val serving: String, val nutrients: Nutrients)
+data class Food(val id: String, val name: String, val serving: String, val nutrients: Nutrients, val notes: String = "")
 data class Intake(val id: String, val food: Food, val portions: Double, val timestamp: Long) {
     val nutrients get() = food.nutrients * portions
 }

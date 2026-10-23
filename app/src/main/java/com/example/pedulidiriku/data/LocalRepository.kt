@@ -9,20 +9,28 @@ import com.example.pedulidiriku.domain.Intake
 import com.example.pedulidiriku.domain.IntakeRepository
 import com.example.pedulidiriku.domain.Nutrients
 
-class LocalRepository(context: Context) : SQLiteOpenHelper(context, "nutrition.db", null, 1),
+class LocalRepository(context: Context) : SQLiteOpenHelper(context, "nutrition.db", null, 2),
     IntakeRepository {
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE foods(id TEXT PRIMARY KEY, name TEXT NOT NULL, serving TEXT NOT NULL, calories REAL, sugar REAL, sodium REAL, protein REAL)")
+        db.execSQL("CREATE TABLE foods(id TEXT PRIMARY KEY, name TEXT NOT NULL, serving TEXT NOT NULL, calories REAL, sugar REAL, sodium REAL, protein REAL, notes TEXT NOT NULL DEFAULT '')")
         db.execSQL("CREATE TABLE intake(id TEXT PRIMARY KEY, food TEXT NOT NULL, portions REAL NOT NULL, timestamp INTEGER NOT NULL)")
         db.execSQL("CREATE INDEX intake_time ON intake(timestamp)")
         seeds.forEach { db.insertOrThrow("foods", null, values(it)) }
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        if (oldVersion < 2) {
+            db.execSQL("ALTER TABLE foods ADD COLUMN notes TEXT NOT NULL DEFAULT ''")
+            IndonesianFoods.additions.forEach {
+                db.insertWithOnConflict("foods", null, values(it), SQLiteDatabase.CONFLICT_IGNORE)
+            }
+        }
+    }
     private fun values(food: Food) = ContentValues().apply {
         put("id", food.id); put("name", food.name); put("serving", food.serving)
         put("calories", food.nutrients.calories); put("sugar", food.nutrients.sugar)
         put("sodium", food.nutrients.sodium); put("protein", food.nutrients.protein)
+        put("notes", food.notes)
     }
 
     override fun foods(): List<Food> =
@@ -33,7 +41,8 @@ class LocalRepository(context: Context) : SQLiteOpenHelper(context, "nutrition.d
                         c.getString(0),
                         c.getString(1),
                         c.getString(2),
-                        Nutrients(c.getDouble(3), c.getDouble(4), c.getDouble(5), c.getDouble(6))
+                        Nutrients(c.getDouble(3), c.getDouble(4), c.getDouble(5), c.getDouble(6)),
+                        c.getString(7)
                     )
                 )
             }
@@ -97,6 +106,6 @@ class LocalRepository(context: Context) : SQLiteOpenHelper(context, "nutrition.d
                 Nutrients(350.0, 5.0, 1200.0, 8.0)
             ),
             Food("water", "Air mineral", "250 ml", Nutrients())
-        )
+        ) + IndonesianFoods.additions
     }
 }

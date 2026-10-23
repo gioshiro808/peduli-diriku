@@ -30,6 +30,9 @@ import com.example.pedulidiriku.TrackerApplication
 import com.example.pedulidiriku.domain.Food
 import com.example.pedulidiriku.domain.Nutrients
 import com.example.pedulidiriku.reminder.Reminders
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import android.view.WindowManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.Instant
@@ -200,7 +203,7 @@ class MainActivity : AppCompatActivity() {
                         food.nutrients.sugar,
                         food.nutrients.sodium,
                         food.nutrients.protein
-                    )
+                    ) + "\n\n" + food.notes.ifBlank { "Estimasi per porsi. Nilai dapat berbeda berdasarkan bahan dan cara memasak." }
             }
         }
         update()
@@ -231,11 +234,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun customFood() {
-        val view = layoutInflater.inflate(R.layout.dialog_custom, null)
-        val dialog = AlertDialog.Builder(this).setTitle("Makanan / minuman sendiri").setView(view)
-            .setNegativeButton("Batal", null).setPositiveButton("Simpan", null).create()
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_custom, null)
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(view)
+        dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
+        view.findViewById<View>(R.id.cancelCustom).setOnClickListener { dialog.dismiss() }
         dialog.setOnShowListener {
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            dialog.behavior.skipCollapsed = true
+            view.findViewById<View>(R.id.saveCustom).setOnClickListener {
                 val name = view.findViewById<EditText>(R.id.name)
                 val serving = view.findViewById<EditText>(R.id.serving)
                 val fields = listOf(
